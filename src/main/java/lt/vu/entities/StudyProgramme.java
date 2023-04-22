@@ -9,7 +9,10 @@ import javax.persistence.*;
 @Table(name = "STUDY_PROGRAMME")
 @Getter
 @Setter
-@NamedQuery(name = "StudyProgramme.findAll", query = "select sp from StudyProgramme as sp")
+@NamedQueries({
+        @NamedQuery(name = "StudyProgramme.findAll", query = "select sp from StudyProgramme as sp"),
+        @NamedQuery(name = "StudyProgramme.findAllByDeviceId", query = "select sp from StudyProgramme sp where sp.faculty.id =: deviceId")
+})
 public class StudyProgramme {
 
     @Id

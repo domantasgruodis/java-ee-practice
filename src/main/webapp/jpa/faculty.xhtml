@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+>
+<h:head/>
+<h:body>
+    <h2>Study Programmes for #{selectedFaculty.currentFaculty.name} Faculty</h2>
+    <ol>
+        <ui:repeat value="#{selectedFaculty.allStudyProgrammes}" var="studyProgramme">
+            <li><h:link value="#{studyProgramme.name}" outcome="studyProgramme?id=#{studyProgramme.id}"/></li>
+        </ui:repeat>
+    </ol>
+    <h:form>
+        <h:inputText value="#{selectedFaculty.newStudyProgramme.name}" required="true"/>
+        <h:commandButton value="Add new study programme"
+                         actionListener="#{selectedFaculty.createStudyProgramme}"
+                         action="#{'faculty?faces-redirect=true&amp;id='.concat(selectedFaculty.currentFaculty.id)}">
+            <f:param name="id" value="#{selectedFaculty.currentFaculty.id}"/>
+        </h:commandButton>
+    </h:form>
+</h:body>
+</html>
