@@ -14,7 +14,8 @@
     </ol>
     <h:form>
         <h:inputText value="#{faculties.newFaculty.name}" required="true"/>
-        <h:commandButton value="Add new faculty" actionListener="#{faculties.createFaculty}" outcome="faculties?faces-redirect=true"/>
+        <h:commandButton value="Add new faculty" actionListener="#{faculties.createFaculty}" action="faculties?faces-redirect=true"/>
     </h:form>
+    <h:link outcome="/index">Back to implementation choice</h:link>
 </h:body>
 </html>

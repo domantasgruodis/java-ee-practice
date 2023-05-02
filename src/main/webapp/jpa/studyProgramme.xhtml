@@ -7,17 +7,52 @@
 >
 <h:head/>
 <h:body>
-    <h2>Faculties:</h2>
-    <ol>
-        <ui:repeat value="#{faculties.allFaculties}" var="faculty">
-            <li><h:link value="#{faculty.name}" outcome="faculty?id=#{faculty.id}"/></li>
+    <h2>Study programme: #{selectedStudyProgramme.currentStudyProgramme.name}</h2>
+    <h3>Courses:</h3>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Credits</th>
+        </tr>
+        <ui:repeat value="#{selectedStudyProgramme.studyProgrammeCourses}" var="course">
+            <tr>
+                <th><h:link value="#{course.name}" outcome="course?id=#{course.id}"/></th>
+                <th>#{course.credits}</th>
+            </tr>
         </ui:repeat>
-    </ol>
+    </table>
     <h:form>
-        <h:inputText value="#{faculties.newFaculty.name}" required="true"/>
-        <h:commandButton value="Add new faculty" actionListener="#{faculties.createFaculty}" action="faculty?faces-redirect=true">
-            <f:param name="facultyId" value="selectedFaculty.currentFaculty.id"/>
+        <h:inputText value="#{selectedStudyProgramme.newCourse.name}" required="true"/>
+        <h:inputText type="number" value="#{selectedStudyProgramme.newCourse.credits}" placeholder="Course credits" required="true">
+            <f:convertNumber integerOnly="true"/>
+        </h:inputText>
+        <h:commandButton value="Add new course" actionListener="#{selectedStudyProgramme.createCourse}"
+                         action="#{'studyProgramme?faces-redirect=true&amp;id='.concat(selectedStudyProgramme.currentStudyProgramme.id)}">
+            <f:param name="id" value="#{selectedStudyProgramme.currentStudyProgramme.id}"/>
         </h:commandButton>
     </h:form>
+    <br/>
+    <h3>Students:</h3>
+    <table>
+        <tr id="std-hdr">
+            <th>Name</th>
+            <th>Surname</th>
+        </tr>
+        <ui:repeat value="#{selectedStudyProgramme.studentsFromStudyProgramme}" var="student">
+            <tr>
+                <th>#{student.name}</th>
+                <th>#{student.surname}</th>
+            </tr>
+        </ui:repeat>
+    </table>
+    <h:form>
+        <h:inputText value="#{selectedStudyProgramme.newStudent.name}" required="true"/>
+        <h:inputText value="#{selectedStudyProgramme.newStudent.surname}" required="true"/>
+        <h:commandButton value="Add new student" actionListener="#{selectedStudyProgramme.createStudent}"
+                         action="#{'studyProgramme?faces-redirect=true&amp;id='.concat(selectedStudyProgramme.currentStudyProgramme.id)}">
+            <f:param name="id" value="#{selectedStudyProgramme.currentStudyProgramme.id}"/>
+        </h:commandButton>
+    </h:form>
+    <h:link outcome="faculty?id=#{selectedStudyProgramme.currentStudyProgramme.faculty.id}">Back to faculty</h:link>
 </h:body>
 </html>

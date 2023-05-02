@@ -2,8 +2,10 @@ package lt.vu.usecases;
 
 import lombok.Getter;
 import lombok.Setter;
+import lt.vu.entities.Lecturer;
 import lt.vu.entities.StudyProgramme;
 import lt.vu.persistence.FacultyDAO;
+import lt.vu.persistence.LecturerDAO;
 import lt.vu.persistence.StudyProgrammeDAO;
 
 import javax.annotation.PostConstruct;
@@ -23,8 +25,14 @@ public class SelectedFaculty {
     @Inject
     StudyProgrammeDAO studyProgrammeDAO;
 
+    @Inject
+    LecturerDAO lecturerDAO;
+
     @Getter @Setter
     private StudyProgramme newStudyProgramme = new StudyProgramme();
+
+    @Getter @Setter
+    private Lecturer newLecturer = new Lecturer();
 
     @Getter
     private lt.vu.entities.Faculty currentFaculty;
@@ -32,9 +40,14 @@ public class SelectedFaculty {
     @Getter
     private List<StudyProgramme> allStudyProgrammes;
 
+    @Getter
+    private List<Lecturer> allFacultyLecturers;
+
     @PostConstruct
     public void init() {
+        loadCurrentFaculty();
         loadAllStudyProgrammes();
+        loadAllFacultyLecturers();
     }
 
     @Transactional
@@ -43,14 +56,22 @@ public class SelectedFaculty {
         studyProgrammeDAO.persist(newStudyProgramme);
     }
 
+    @Transactional
+    public void createLecturer() {
+        newLecturer.setFaculty(this.currentFaculty);
+        lecturerDAO.persist(newLecturer);
+    }
+
     private void loadAllStudyProgrammes() {
-        loadCurrentFaculty();
-        this.allStudyProgrammes = studyProgrammeDAO.loadAllByDeviceId(currentFaculty.getId());
+        this.allStudyProgrammes = studyProgrammeDAO.loadAllByFacultyId(currentFaculty.getId());
+    }
+
+    private void loadAllFacultyLecturers() {
+        this.allFacultyLecturers = lecturerDAO.loadAllByFacultyId(currentFaculty.getId());
     }
 
     private void loadCurrentFaculty() {
-        Map<String, String> requestParameters =
-                FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+        Map<String, String> requestParameters = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
         Integer id = Integer.parseInt(requestParameters.get("id"));
         this.currentFaculty = facultyDAO.loadOne(id);
     }

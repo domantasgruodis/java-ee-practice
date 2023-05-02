@@ -7,7 +7,8 @@
 >
 <h:head/>
 <h:body>
-    <h2>Study Programmes for #{selectedFaculty.currentFaculty.name} Faculty</h2>
+    <h2>#{selectedFaculty.currentFaculty.name} Faculty</h2>
+    <h3>Study programmes:</h3>
     <ol>
         <ui:repeat value="#{selectedFaculty.allStudyProgrammes}" var="studyProgramme">
             <li><h:link value="#{studyProgramme.name}" outcome="studyProgramme?id=#{studyProgramme.id}"/></li>
@@ -21,5 +22,22 @@
             <f:param name="id" value="#{selectedFaculty.currentFaculty.id}"/>
         </h:commandButton>
     </h:form>
+    <br/>
+    <h3>Lecturers of Faculty</h3>
+    <ol>
+        <ui:repeat value="#{selectedFaculty.allFacultyLecturers}" var="lecturer">
+            <li>#{lecturer.name} #{lecturer.surname}</li>
+        </ui:repeat>
+    </ol>
+    <h:form>
+        <h:inputText value="#{selectedFaculty.newLecturer.name}" required="true"/>
+        <h:inputText value="#{selectedFaculty.newLecturer.surname}" require="true"/>
+        <h:commandButton value="Add new lecturer"
+                         actionListener="#{selectedFaculty.createLecturer}"
+                         action="#{'faculty?faces-redirect=true&amp;id='.concat(selectedFaculty.currentFaculty.id)}">
+            <f:param name="id" value="#{selectedFaculty.currentFaculty.id}"/>
+        </h:commandButton>
+    </h:form>
+    <h:link outcome="faculties">Back to faculties</h:link>
 </h:body>
 </html>

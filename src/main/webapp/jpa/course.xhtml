@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+>
+<h:head/>
+<h:body>
+    <h2>Course: #{selectedCourse.currentCourse.name}</h2>
+    <h3>Lecturers:</h3>
+    <ol>
+        <ui:repeat value="#{selectedCourse.courseLecturers}" var="lecturer">
+            <li>#{lecturer.name} #{lecturer.surname}</li>
+        </ui:repeat>
+    </ol>
+
+    <h:form>
+        <h:selectManyMenu value="#{selectedCourse.selectedLecturerIds}">
+            <f:selectItems value="#{selectedCourse.allFacultyLecturers}" var="lecturer" itemLabel="#{lecturer.name.concat(' ').concat(lecturer.surname)}" itemValue="#{lecturer.id}" />
+        </h:selectManyMenu>
+        <h:commandButton value="Update lecturers" actionListener="#{selectedCourse.updateCourseLecturers}"
+                         action="#{'course?faces-redirect=true&amp;id='.concat(selectedCourse.currentCourse.id)}">
+            <f:param name="id" value="#{selectedCourse.currentCourse.id}"/>
+        </h:commandButton>
+    </h:form>
+    <h:link outcome="studyProgramme?id=#{selectedCourse.currentCourse.studyProgramme.id}">Back to study programme</h:link>
+</h:body>
+</html>
