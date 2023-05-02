@@ -29,8 +29,8 @@ public class StudyProgrammeDAO {
         return em.createNamedQuery("StudyProgramme.findAll", StudyProgramme.class).getResultList();
     }
 
-    public List<StudyProgramme> loadAllByDeviceId(Integer deviceId) {
-        return em.createNamedQuery("StudyProgramme.findAllByDeviceId", StudyProgramme.class).setParameter("deviceId", deviceId).getResultList();
+    public List<StudyProgramme> loadAllByFacultyId(Integer facultyId) {
+        return em.createNamedQuery("StudyProgramme.findAllByFacultyId", StudyProgramme.class).setParameter("facultyId", facultyId).getResultList();
     }
 
     public StudyProgramme update(StudyProgramme studyProgramme) {

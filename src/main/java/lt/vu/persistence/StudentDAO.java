@@ -29,6 +29,16 @@ public class StudentDAO {
         return em.createNamedQuery("Student.findAll", Student.class).getResultList();
     }
 
+    public List<Student> loadAllByFacultyId(Integer facultyId) {
+        return em.createNamedQuery("Student.findAllByFacultyId", Student.class)
+                .setParameter("facultyId", facultyId).getResultList();
+    }
+
+    public List<Student> loadAllByStudyProgrammeId(Integer studyProgrammeId) {
+        return em.createNamedQuery("Student.findAllByStudyProgrammeId", Student.class)
+                .setParameter("studyProgrammeId", studyProgrammeId).getResultList();
+    }
+
     public Student update(Student student) {
         return em.merge(student);
     }

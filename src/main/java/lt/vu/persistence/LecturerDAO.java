@@ -29,6 +29,11 @@ public class LecturerDAO {
         return em.createNamedQuery("Lecturer.findAll", Lecturer.class).getResultList();
     }
 
+    public List<Lecturer> loadAllByFacultyId(Integer facultyId) {
+        return em.createNamedQuery("Lecturer.findAllByFacultyId", Lecturer.class)
+                .setParameter("facultyId", facultyId).getResultList();
+    }
+
     public Lecturer update(Lecturer lecturer) {
         return em.merge(lecturer);
     }
