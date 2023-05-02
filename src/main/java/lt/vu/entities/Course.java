@@ -10,7 +10,10 @@ import java.util.List;
 @Table(name = "COURSE")
 @Getter
 @Setter
-@NamedQuery(name = "Course.findAll", query = "select c from Course as c")
+@NamedQueries({
+        @NamedQuery(name = "Course.findAll", query = "select c from Course as c"),
+        @NamedQuery(name = "Course.findAllByStudyProgrammeId", query = "select c from Course as c where c.studyProgramme.id =: studyProgrammeId")
+})
 public class Course {
 
     @Id
@@ -22,6 +25,10 @@ public class Course {
 
     @Column(name = "NAME")
     private String name;
+
+    @ManyToOne
+    @JoinColumn(name = "STUDY_PROGRAMME_ID")
+    private StudyProgramme studyProgramme;
 
     @OneToMany(mappedBy = "course")
     private List<CourseLecturer> courseLecturers;
