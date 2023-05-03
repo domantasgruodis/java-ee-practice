@@ -1,4 +1,4 @@
-package lt.vu.persistence;
+package lt.vu.jpa.persistence;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.RequestScoped;

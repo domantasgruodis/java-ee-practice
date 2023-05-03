@@ -1,12 +1,12 @@
-package lt.vu.usecases;
+package lt.vu.jpa.usecases;
 
 import lombok.Getter;
 import lombok.Setter;
-import lt.vu.entities.Lecturer;
-import lt.vu.entities.StudyProgramme;
-import lt.vu.persistence.FacultyDAO;
-import lt.vu.persistence.LecturerDAO;
-import lt.vu.persistence.StudyProgrammeDAO;
+import lt.vu.jpa.entities.Lecturer;
+import lt.vu.jpa.entities.StudyProgramme;
+import lt.vu.jpa.persistence.FacultyDAO;
+import lt.vu.jpa.persistence.LecturerDAO;
+import lt.vu.jpa.persistence.StudyProgrammeDAO;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
@@ -35,7 +35,7 @@ public class SelectedFaculty {
     private Lecturer newLecturer = new Lecturer();
 
     @Getter
-    private lt.vu.entities.Faculty currentFaculty;
+    private lt.vu.jpa.entities.Faculty currentFaculty;
 
     @Getter
     private List<StudyProgramme> allStudyProgrammes;

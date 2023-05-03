@@ -1,9 +1,9 @@
-package lt.vu.usecases;
+package lt.vu.jpa.usecases;
 
 import lombok.Getter;
 import lombok.Setter;
-import lt.vu.entities.Faculty;
-import lt.vu.persistence.FacultyDAO;
+import lt.vu.jpa.entities.Faculty;
+import lt.vu.jpa.persistence.FacultyDAO;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;

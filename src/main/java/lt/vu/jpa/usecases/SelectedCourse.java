@@ -1,13 +1,13 @@
-package lt.vu.usecases;
+package lt.vu.jpa.usecases;
 
 import lombok.Getter;
 import lombok.Setter;
-import lt.vu.entities.Course;
-import lt.vu.entities.CourseLecturer;
-import lt.vu.entities.Lecturer;
-import lt.vu.persistence.CourseDAO;
-import lt.vu.persistence.CourseLecturerDAO;
-import lt.vu.persistence.LecturerDAO;
+import lt.vu.jpa.entities.Course;
+import lt.vu.jpa.entities.CourseLecturer;
+import lt.vu.jpa.entities.Lecturer;
+import lt.vu.jpa.persistence.CourseDAO;
+import lt.vu.jpa.persistence.CourseLecturerDAO;
+import lt.vu.jpa.persistence.LecturerDAO;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;

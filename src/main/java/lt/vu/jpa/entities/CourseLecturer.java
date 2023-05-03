@@ -1,4 +1,4 @@
-package lt.vu.entities;
+package lt.vu.jpa.entities;
 
 import lombok.Getter;
 import lombok.Setter;

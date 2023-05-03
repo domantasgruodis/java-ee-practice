@@ -1,11 +1,9 @@
-package lt.vu.entities;
+package lt.vu.jpa.entities;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.apache.ibatis.annotations.Many;
 
 import javax.persistence.*;
-import java.time.OffsetDateTime;
 
 @Entity
 @Table(name = "STUDENT")

@@ -1,6 +1,6 @@
-package lt.vu.persistence;
+package lt.vu.jpa.persistence;
 
-import lt.vu.entities.Course;
+import lt.vu.jpa.entities.Course;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;

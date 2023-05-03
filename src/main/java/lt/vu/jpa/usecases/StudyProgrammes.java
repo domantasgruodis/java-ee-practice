@@ -1,9 +1,9 @@
-package lt.vu.usecases;
+package lt.vu.jpa.usecases;
 
 import lombok.Getter;
 import lombok.Setter;
-import lt.vu.entities.StudyProgramme;
-import lt.vu.persistence.StudyProgrammeDAO;
+import lt.vu.jpa.entities.StudyProgramme;
+import lt.vu.jpa.persistence.StudyProgrammeDAO;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
