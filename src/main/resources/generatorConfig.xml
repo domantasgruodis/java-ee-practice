@@ -31,6 +31,9 @@
         <table schema="public" tableName="study_programme">
             <generatedKey column="id" identity="true" sqlStatement="JDBC" />
         </table>
+        <table schema="public" tableName="lecturer">
+            <generatedKey column="id" identity="true" sqlStatement="JDBC" />
+        </table>
 
 
     </context>
